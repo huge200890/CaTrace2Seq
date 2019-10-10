@@ -1,6 +1,6 @@
 #### install tools
 
-## git clone -b paper-version  https://github.com/DrDongSi/Ca-Backbone-Prediction.git
+## git clone https://github.com/DrDongSi/Ca-Backbone-Prediction.git
 ## cd Ca-Backbone-Prediction
 ##  module load python/python-3.5.2
 ## python3 -m venv env
@@ -13,35 +13,41 @@
 The program of mapping protein sequences into protein Ca trace drives from cryoEM image data
 
 
-**(1) Download CaTrace2Seq package (short path is recommended)**
+
+Test Environment
+--------------------------------------------------------------------------------------
+Red Hat Enterprise Linux Server release 6.4 (Santiago), perl 5, version 16, subversion 3 (v5.16.3)
+
+Installation Steps
+--------------------------------------------------------------------------------------
+
+**(1) Configure CaTrace2Seq (required)**
 
 ```
-git clone https://github.com/DrJieHou/CaTrace2Seq.git
+cd sequence_mapping
 
-cd CaTrace2Seq
-```
-
-
-**(2) Configure CaTrace2Seq (required)**
-
-```
 perl setup_env.pl
 
+(Note: since we use quality assessment tool with non-redundent sequence database, the tool requires around 33G)
+
+cd installation/
+sh P1_install_R-3.2.0.sh  
+
+(Note: check R installation:  sequence_mapping/tools/R-3.2.0/bin/R )
 ```
 
-**(3) Run CaTrace2Seq (required)**
+**(2) Run CaTrace2Seq (required)**
 
 ```
-sh run_CaTrace2Seq.sh  <path of fasta sequence> <path of Ca trace> <length threshold for fragment> <output-directory> <num of cpus>
+sh bin/run_CaTrace2Seq.sh  <path of fasta sequence> <path of Ca trace> <length threshold for fragment> <output-directory> <num of cpus>
 ```
 
-**(4) Practice the examples** 
+**(4) Practice the examples using fragment traces from experimental density maps** 
 
 ```
-cd example
+cd examples
 
 sh run_6272.sh
-
 
 
  *****************************************************************************
@@ -71,3 +77,20 @@ GDT-HA-score= 0.6039 %(d<0.5)=0.1814 %(d<1)=0.5819 %(d<2)=0.7431 %(d<4)=0.9093
  3      0.1425030895  -0.0046451903  -0.0023483976   0.9999864535
  
 ```
+
+
+**(5) Practice the examples using fragment traces from simulated density maps** 
+
+```
+cd examples
+
+sh run_2GZ4.sh
+sh run_3EWG.sh
+sh run_3n2t.sh
+sh run_3qc7.sh
+sh run_3RMU.sh
+sh run_4RAJ.sh
+sh run_5EBA.sh
+sh run_5i68.sh
+sh run_5P9V.sh
+sh run_6ahv.sh
